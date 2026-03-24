@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -28,8 +28,9 @@ function App() {
 
 const AppContent = () => {
     const { user } = useAuth();
+    const location = useLocation();
     const isAdmin = user?.role === 'admin';
-    const isLoginOrSignup = window.location.pathname === '/login' || window.location.pathname === '/signup' || window.location.pathname === '/admin/login';
+    const isLoginOrSignup = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/admin/login';
 
     return (
         <div className="min-h-screen">

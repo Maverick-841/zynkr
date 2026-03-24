@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
-import { CheckCircle, Clock, XCircle, ExternalLink, Github, Linkedin, Briefcase, User } from 'lucide-react';
+import { CheckCircle, Clock, XCircle, ExternalLink, Code, Globe, Briefcase, User } from 'lucide-react';
 
 const Dashboard = () => {
     const { user } = useAuth();
@@ -76,14 +76,14 @@ const Dashboard = () => {
                         <div className="space-y-3">
                             <a href={profile.github_link} target="_blank" className="flex items-center justify-between p-3 hover:bg-slate-50 rounded-xl transition-colors group">
                                 <div className="flex items-center gap-3">
-                                    <Github size={20} className="text-slate-700" />
+                                    <Code size={20} className="text-slate-700" />
                                     <span className="text-sm font-medium">GitHub</span>
                                 </div>
                                 <ExternalLink size={16} className="text-slate-300 group-hover:text-primary-600" />
                             </a>
                             <a href={profile.linkedin_link} target="_blank" className="flex items-center justify-between p-3 hover:bg-slate-50 rounded-xl transition-colors group">
                                 <div className="flex items-center gap-3">
-                                    <Linkedin size={20} className="text-[#0077b5]" />
+                                    <Globe size={20} className="text-[#0077b5]" />
                                     <span className="text-sm font-medium">LinkedIn</span>
                                 </div>
                                 <ExternalLink size={16} className="text-slate-300 group-hover:text-primary-600" />
