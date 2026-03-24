@@ -6,7 +6,8 @@ import {
     addCompany, 
     getCompanies, 
     createMatch, 
-    getMatches 
+    getMatches,
+    getSmartMatches
 } from '../controllers/adminController.js';
 import { protect, admin } from '../middleware/authMiddleware.js';
 
@@ -19,5 +20,6 @@ router.post('/company', protect, admin, addCompany);
 router.get('/companies', protect, admin, getCompanies);
 router.post('/match', protect, admin, createMatch);
 router.get('/matches', protect, admin, getMatches);
+router.get('/smart-matches', protect, admin, getSmartMatches);
 
 export default router;

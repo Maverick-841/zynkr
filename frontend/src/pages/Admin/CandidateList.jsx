@@ -58,6 +58,7 @@ const CandidateList = () => {
                         <option value="">All Status</option>
                         <option value="pending">Pending</option>
                         <option value="shortlisted">Shortlisted</option>
+                        <option value="interview">Interview</option>
                         <option value="rejected">Rejected</option>
                     </select>
                 </div>
@@ -79,7 +80,11 @@ const CandidateList = () => {
                                     <Mail size={12} /> {c.email}
                                 </div>
                             </div>
-                            <div className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase ${c.profile?.status === 'shortlisted' ? 'bg-emerald-100 text-emerald-600' : c.profile?.status === 'rejected' ? 'bg-rose-100 text-rose-600' : 'bg-amber-100 text-amber-600'}`}>
+                            <div className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase ${
+                                c.profile?.status === 'shortlisted' ? 'bg-emerald-100 text-emerald-600' : 
+                                c.profile?.status === 'interview' ? 'bg-purple-100 text-purple-600' :
+                                c.profile?.status === 'rejected' ? 'bg-rose-100 text-rose-600' : 
+                                'bg-amber-100 text-amber-600'}`}>
                                 {c.profile?.status || 'pending'}
                             </div>
                         </div>
@@ -107,9 +112,10 @@ const CandidateList = () => {
                                     <ExternalLink size={18} />
                                 </a>
                             </div>
-                            <div className="flex gap-2">
-                                <button onClick={() => handleStatusUpdate(c._id, 'shortlisted')} className="btn-primary py-2 px-4 text-xs bg-emerald-600 hover:bg-emerald-700">Shortlist</button>
-                                <button onClick={() => handleStatusUpdate(c._id, 'rejected')} className="btn-secondary py-2 px-4 text-xs text-rose-600 border-rose-100 hover:bg-rose-50">Reject</button>
+                            <div className="flex gap-2 flex-wrap">
+                                <button onClick={() => handleStatusUpdate(c._id, 'shortlisted')} className="btn-primary py-1.5 px-3 text-[11px] bg-emerald-600 hover:bg-emerald-700">Shortlist</button>
+                                <button onClick={() => handleStatusUpdate(c._id, 'interview')} className="btn-primary py-1.5 px-3 text-[11px] bg-purple-600 hover:bg-purple-700">Approve</button>
+                                <button onClick={() => handleStatusUpdate(c._id, 'rejected')} className="btn-secondary py-1.5 px-3 text-[11px] text-rose-600 border-rose-100 hover:bg-rose-50">Reject</button>
                             </div>
                         </div>
                     </motion.div>

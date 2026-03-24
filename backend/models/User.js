@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     availability_24hr: { type: Boolean, default: false },
     status: { 
       type: String, 
-      enum: ['pending', 'shortlisted', 'rejected'], 
+      enum: ['pending', 'shortlisted', 'interview', 'rejected'], 
       default: 'pending' 
     }
   }

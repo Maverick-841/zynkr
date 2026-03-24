@@ -8,7 +8,13 @@ export const protect = async (req, res, next) => {
         try {
             token = req.headers.authorization.split(' ')[1];
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            req.user = await User.findById(decoded.id).select('-password');
+
+            // Handle hardcoded admin token (no DB record)
+            if (decoded.id === 'admin_id') {
+                req.user = { _id: 'admin_id', name: 'Zynkr Admin', email: 'admin@zynkr.com', role: 'admin' };
+            } else {
+                req.user = await User.findById(decoded.id).select('-password');
+            }
             next();
         } catch (error) {
             console.error(error);
