@@ -1,11 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
 import AdminLayout from './components/AdminLayout';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import CandidateForm from './pages/CandidateForm';
@@ -29,22 +28,23 @@ function App() {
 
 const AppContent = () => {
     const location = useLocation();
+    const { user } = useAuth();
     const isAdminPage = location.pathname.startsWith('/admin');
     const isAuthPage = ['/login', '/signup'].includes(location.pathname);
 
     return (
         <div className="min-h-screen">
-            {!isAdminPage && !isAuthPage && <Navbar />}
+            {!isAdminPage && !isAuthPage && user && <Navbar />}
             <main className={isAdminPage && location.pathname !== '/admin/login' ? '' : 'container mx-auto px-4 py-8'}>
                 <Routes>
                     {/* Public Routes */}
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Navigate to="/login" replace />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
 
                     {/* Protected User Routes */}
                     <Route path="/apply" element={<ProtectedRoute><CandidateForm /></ProtectedRoute>} />
-                    <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                    <Route path="/home" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
 
                     {/* Admin Login (no layout) */}
                     <Route path="/admin/login" element={<AdminLogin />} />

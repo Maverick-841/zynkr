@@ -73,7 +73,7 @@ const CandidateForm = () => {
                 headers: { Authorization: `Bearer ${user.token}` }
             });
             setSubmitted(true);
-            setTimeout(() => navigate('/dashboard'), 2000);
+            setTimeout(() => navigate('/home'), 2000);
         } catch (_err) {
             setErrors({ submit: 'Error submitting profile. Please try again.' });
         } finally {

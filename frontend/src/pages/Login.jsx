@@ -14,7 +14,7 @@ const Login = () => {
         e.preventDefault();
         try {
             await login(email, password);
-            navigate('/dashboard');
+            navigate('/home');
         } catch (error) {
             alert(error.response?.data?.message || 'Login failed');
         }

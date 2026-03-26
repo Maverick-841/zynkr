@@ -115,3 +115,18 @@ export const getMatches = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// @desc    Get smart matches
+// @route   GET /api/admin/smart-matches
+// @access  Private/Admin
+export const getSmartMatches = async (req, res) => {
+    try {
+        // Placeholder: return all matches for now
+        const matches = await Match.find({})
+            .populate('candidate_id', 'name email profile.specialization')
+            .populate('company_id', 'company_name role_hiring');
+        res.json(matches);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
