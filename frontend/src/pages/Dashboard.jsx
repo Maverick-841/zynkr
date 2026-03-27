@@ -30,7 +30,6 @@ const Dashboard = () => {
         pending:     { color: 'text-amber-500',   bg: 'bg-amber-50',   icon: <Clock />,        label: 'Under Review' },
         shortlisted: { color: 'text-blue-500',    bg: 'bg-blue-50',    icon: <CheckCircle />,  label: 'Shortlisted' },
         interview:   { color: 'text-purple-500',  bg: 'bg-purple-50',  icon: <Briefcase />,    label: 'Interview Stage' },
-        rejected:    { color: 'text-rose-500',    bg: 'bg-rose-50',    icon: <XCircle />,      label: 'Not Selected' },
     };
 
     const currentStatus = statusConfig[status] || statusConfig.pending;
